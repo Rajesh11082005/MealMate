@@ -28,7 +28,7 @@
 
 .cross > .food-item-counter{
     position: static;
-    /* transform: translateX(-10%); */
+    transform: translateX(-10%);
 }
 .cross > .food-item-counter > img{
     width: 30px;
