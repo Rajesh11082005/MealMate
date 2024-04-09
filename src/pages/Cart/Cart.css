@@ -25,8 +25,14 @@
     border: none;
 }
 
-.cross{
-    cursor: pointer;
+
+.cross > .food-item-counter{
+    position: static;
+    /* transform: translateX(-10%); */
+}
+.cross > .food-item-counter > img{
+    width: 30px;
+
 }
 
 .cart-bottom{
@@ -53,7 +59,7 @@
     margin: 10px 0; 
 }
 
-.cart-total button{
+.cart-total button, .empty-cart button{
     border: none;
     background-color: tomato;
     color: white;
@@ -63,7 +69,7 @@
     cursor: pointer;
 }
 
-.cart-total button:hover{
+.cart-total button:hover , .empty-cart button:hover{
     background-color: rgb(224, 67, 39);
 }
 
@@ -101,6 +107,18 @@
     cursor: pointer;
 }
 
+.empty-cart{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.empty-cart img{
+    width: 250px;
+}
+/* .empty-cart */
+
 @media (max-width: 750px) {
     .cart-bottom{
         flex-direction: column-reverse;
@@ -110,3 +128,4 @@
         justify-content: start;
     }
 }
+
