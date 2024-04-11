@@ -60,6 +60,9 @@ import bag_icon from './bag_icon.png'
 import logout_icon from './logout_icon.png'
 import parcel_icon from './parcel_icon.png'
 import emptycart from "./emptycart-illu.svg"
+import placeHolder from './placeholder.svg'
+import show from "./show.svg"
+import hide from "./hide.svg"
 
 export const assets = {
     logo,
@@ -81,7 +84,10 @@ export const assets = {
     logout_icon,
     bag_icon,
     parcel_icon,
-    emptycart
+    emptycart,
+    placeHolder,
+    show,
+    hide,
 }
 
 export const menu_list = [
@@ -116,7 +122,8 @@ export const menu_list = [
     {
         menu_name: "Noodles",
         menu_image: menu_8
-    }]
+    }
+]
 
 export const food_list = [
     {

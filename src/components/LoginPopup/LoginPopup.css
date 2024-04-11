@@ -36,8 +36,24 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    /* border: 2px solid; */
 }
-
+.password-wrapper{
+    position: relative;
+    /* border: 2px solid black; */
+}
+.password-wrapper span{
+    position: absolute;
+    right: 5px;
+    top: 9px;
+    opacity: 0.8;
+}
+.password-wrapper span img{
+    width: 20px;
+}
+.password-wrapper input{
+    width: 100%;
+}
 .login-popup-inputs input{
     outline: none;
     border: 1px solid #c9c9c9;

@@ -5,15 +5,26 @@ import { StoreContext } from '../../context/StoreContext'
 
 const FoodItem = ({id, name, price, description, image}) => {
 
-    const {cartItems, addToCart, removeFromCart} = useContext(StoreContext)
+    const {cartItems, addToCart, removeFromCart, showLogin , setShowLogin, currentUserState, setCartItems} = useContext(StoreContext)
+
+    const handleOnclickForFirstClick = (uid,id, callbackFunction) =>{
+        if (currentUserState.currentUser.id !== 0){
+            addToCart(uid, id, callbackFunction)
+        }
+        else{
+            setShowLogin(true)
+        }
+    }
 
   return (
     <div className="food-item" id={id}>
         <div className="food-item-container">
             <img src={image} className='food-item-img' alt="image" />
+            {console.log(cartItems)}
+            {console.log(cartItems[currentUserState.currentUser.id])}
             {
-                !cartItems[id] ?
-                <img src={assets.add_icon_white} onClick={() => addToCart(id)} alt="add" className="add" /> :
+                !cartItems[currentUserState.currentUser.id] ?
+                <img src={assets.add_icon_white} onClick={() => handleOnclickForFirstClick(currentUserState.currentUser.id, id, setCartItems)} alt="add" className="add" /> :
                 <div className="food-item-counter">
                     <img onClick={() => removeFromCart(id)} src={assets.remove_icon_red} alt="remove" />
                     <p>{cartItems[id]}</p>
