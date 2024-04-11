@@ -7,29 +7,24 @@ export class Cart {
 
     static DELIVERYFEE = 1;
 
-    static addToCart(userId, itemId, callbackFunction) {
+    static addToCart(userId, itemId) {
         console.log("Hi");
         if (!Cart.cartItems[userId]) {
             Cart.cartItems[userId] = {};
-            callbackFunction(Cart.cartItems)
         }
         if (!Cart.cartItems[userId][itemId]) {
             Cart.cartItems[userId][itemId] = 1;
-            callbackFunction(Cart.cartItems)
         } else {
             Cart.cartItems[userId][itemId]++;
-            callbackFunction(Cart.cartItems)
         }
         Cart.saveCart();
     }
 
-    static removeFromCart(userId, itemId, callbackFunction) {
-        if (Cart.cartItems[userId] && Cart.cartItems[userId][itemId]) {
+    static removeFromCart(userId, itemId) {
+        if (Cart.cartItems[userId][itemId]) {
             Cart.cartItems[userId][itemId]--;
-            callbackFunction(Cart.cartItems)
             if (Cart.cartItems[userId][itemId] <= 0) {
                 delete Cart.cartItems[userId][itemId];
-                callbackFunction(Cart.cartItems)
             }
             Cart.saveCart();
         }
@@ -38,7 +33,6 @@ export class Cart {
     static removeAllFromCart(userId) {
         if (Cart.cartItems[userId]) {
             delete Cart.cartItems[userId];
-            callbackFunction(Cart.cartItems)
             Cart.saveCart();
         }
     }
@@ -46,7 +40,6 @@ export class Cart {
     static removeAllCountfromCartForAItem(userId, itemId) {
         if (Cart.cartItems[userId] && Cart.cartItems[userId][itemId]) {
             delete Cart.cartItems[userId][itemId];
-            callbackFunction(Cart.cartItems)
             Cart.saveCart();
         }
     }
@@ -55,7 +48,7 @@ export class Cart {
         let totalAmount = 0;
         if (userId){
 
-            if (Cart.cartItems[userId]) {
+            if (Cart.cartItems[userId] && Object.keys(Cart.cartItems[userId]).length !== 0) {
 
                 console.log(Cart.cartItems);
                 for (const itemId in Cart.cartItems[userId]) {

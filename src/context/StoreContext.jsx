@@ -20,9 +20,7 @@ const StoreContextProvider = (props) => {
 
     
     User.setCurrentUser();
-    console.log(User.currentUser);
     const [currentUserState, setCurrentUserState] = useState(User.currentUser)
-    console.log(currentUserState);
     const notify = (msg, type) => {
         if (type === "error"){
             toast.error(msg)
@@ -31,31 +29,6 @@ const StoreContextProvider = (props) => {
             toast.success(msg)
         }
     };
-
-    // const addToCart = (itemsId) => {
-    //     if (!cartItems[itemsId]){
-    //         setCartItems((prev) => ({...prev, [itemsId]: 1}))
-    //     }
-    //     else{
-    //         setCartItems((prev) => ({...prev, [itemsId]:prev[itemsId]+1}))
-    //     }
-    // }
-
-    // const removeFromCart = (itemsId) => {
-    //     setCartItems((prev) => ({...prev, [itemsId]:prev[itemsId]-1}))
-    // }
-
-    // const getTotalCartAmount = () => {
-    //     let totalAmount = 0
-
-    //     for (const item in cartItems){
-    //         if (cartItems[item] > 0){
-    //             let itemInfo = food_list.find((p) => p._id === item)
-    //             totalAmount += itemInfo.price * cartItems[item]
-    //         }
-    //     }
-    //     return totalAmount
-    // }
     
     const food_list = Menu.getAllMenuItems();
     const menu_list = Category.getCategories()
@@ -88,5 +61,30 @@ const StoreContextProvider = (props) => {
         {props.children}
     </StoreContext.Provider>
 }
+
+    // const addToCart = (itemsId) => {
+    //     if (!cartItems[itemsId]){
+    //         setCartItems((prev) => ({...prev, [itemsId]: 1}))
+    //     }
+    //     else{
+    //         setCartItems((prev) => ({...prev, [itemsId]:prev[itemsId]+1}))
+    //     }
+    // }
+
+    // const removeFromCart = (itemsId) => {
+    //     setCartItems((prev) => ({...prev, [itemsId]:prev[itemsId]-1}))
+    // }
+
+    // const getTotalCartAmount = () => {
+    //     let totalAmount = 0
+
+    //     for (const item in cartItems){
+    //         if (cartItems[item] > 0){
+    //             let itemInfo = food_list.find((p) => p._id === item)
+    //             totalAmount += itemInfo.price * cartItems[item]
+    //         }
+    //     }
+    //     return totalAmount
+    // }
 
 export default StoreContextProvider
