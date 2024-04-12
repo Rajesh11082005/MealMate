@@ -17,7 +17,7 @@ const NavBar = ({setShowLogin}) => {
         <Link to="/"><h1 className="logo">MealMate.</h1></Link>
         <ul className="navbar-menu">
             <Link to="/" onClick={() => {setMenu("home")}} className={menu === "home" ? "active" : ""}>Home</Link>
-            <a href='#explore-menu' onClick={() => {setMenu("menu")}} className={menu === "menu" ? "active" : ""}>Menu</a>
+            <Link to="/menu" onClick={() => {setMenu("menu")}} className={menu === "menu" ? "active" : ""}>Menu</Link>
             <a href='#app-download' onClick={() => {setMenu("moblie-app")}} className={menu === "moblie-app" ? "active" : ""}>Mobile App</a>
             <a href='#footer' onClick={() => {setMenu("contact-us")}} className={menu === "contact-us" ? "active" : ""}>Contact Us</a>
         </ul>
@@ -25,13 +25,11 @@ const NavBar = ({setShowLogin}) => {
             <img src={assets.search_icon} alt="search-icon" />
             <div className="navbar-search-icon">
                 <Link to="/cart" ><img src={assets.basket_icon} alt="" /></Link>
-                {console.log(currentUserState.currentUser.id)}
-                {console.log(getTotalCartAmount(currentUserState.currentUser.id))}
-                <div className={!getTotalCartAmount(currentUserState.currentUser.id) ? "" : "dot"}></div>
+                <div className={getTotalCartAmount(currentUserState.currentUser.id) ===0 ? "" : "dot"}></div>
             </div>
             {
                 (currentUserState.currentUser.id === 0)?
-                <button onClick={() => setShowLogin(true)}>Sign In{console.log(currentUserState)}</button>:
+                <button onClick={() => {setShowLogin(true);window.scrollTo(0,0);document.body.classList.add("hide")}}>Sign In</button>:
                 <>
                     <span>
                         Hi, <h4 style={{display:"inline"}}>{currentUserState.currentUser.username}</h4>

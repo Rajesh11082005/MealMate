@@ -41,3 +41,7 @@ a{
     transform: translateY(0%);
   }
 }
+
+.hide{
+  overflow: hidden;
+}

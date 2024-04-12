@@ -6,9 +6,10 @@ import { assets } from '../../assets/assets'
 import { Cart as cart } from '../../scripts/Cart'
 
 
+
 const Cart = () => {
 
-    const { cartItems, food_list, removeFromCart, getTotalCartAmount, addToCart, currentUserState, setCurrentUserState} = useContext(StoreContext)
+    const { cartItems, food_list, removeFromCart, getTotalCartAmount, addToCart, currentUserState, setCartItems} = useContext(StoreContext)
 
     const navigate = useNavigate()
 
@@ -22,7 +23,7 @@ const Cart = () => {
                     (
                         <div className="empty-cart">
                             <img src={assets.emptycart} alt="empty-cart" />
-                            <Link to="/#explore-menu"><button>Explore Menu</button></Link>
+                            <Link to="/menu"><button>Explore Menu</button></Link>
                         </div>
                     )
                     :
@@ -51,14 +52,22 @@ const Cart = () => {
                                                         <p>{item.name}</p>
                                                         <p>${item.price}</p>
                                                         <p>{cartItems[currentUserState.currentUser.id][item.id]}</p>
-                                                        <p>${item.price * [currentUserState.currentUser.id][item.id]}</p>
-                                                        {/* <div className='cross'>
+                                                        <p>${Math.round((item.price * cartItems[currentUserState.currentUser.id][item.id]) * 100) / 100}</p>
+                                                        <div className='cross'>
                                                             <div className="food-item-counter">
-                                                                <img onClick={() => removeFromCart(item._id)} src={assets.remove_icon_red} alt="remove" />
-                                                                <p>{cartItems[item._id]}</p>
-                                                                <img onClick={() => addToCart(item._id)} src={assets.add_icon_green} alt="add" />
+                                                                <img onClick={() => {
+                                                                    removeFromCart(currentUserState.currentUser.id, item.id)
+                                                                    setCartItems({...cart.cartItems})
+                                                                }} src={assets.remove_icon_red} alt="remove" />
+
+                                                                <p>{cartItems[currentUserState.currentUser.id][item.id]}</p>
+
+                                                                <img onClick={() => {
+                                                                    addToCart(currentUserState.currentUser.id, item.id)
+                                                                    setCartItems({...cart.cartItems})
+                                                                }} src={assets.add_icon_green} alt="add" />
                                                             </div>
-                                                        </div> */}
+                                                        </div>
                                                     </div>
                                                     <hr />
                                                 </div>
@@ -75,12 +84,12 @@ const Cart = () => {
                                     <div>
                                         <div className="cart-total-details">
                                             <p>SubTotal</p>
-                                            <p>${getTotalCartAmount()}</p>
+                                            <p>${getTotalCartAmount(currentUserState.currentUser.id) - cart.DELIVERYFEE}</p>
                                         </div>
                                         <hr />
                                         <div className="cart-total-details">
                                             <p>Delivery Fee</p>
-                                            <p>${getTotalCartAmount(currentUserState.currentUser.id) === 0 ? 0 : 2}</p>
+                                            <p>${getTotalCartAmount(currentUserState.currentUser.id) === 0 ? 0 : cart.DELIVERYFEE}</p>
                                         </div>
                                         <hr />
                                         <div className="cart-total-details">
@@ -90,15 +99,15 @@ const Cart = () => {
                                     </div>
                                     <button onClick={() => navigate("/order")}>Proceed to checkout</button>
                                 </div>
-                                <div className="cart-promo-code">
+                                {/* <div className="cart-promo-code">
                                     <div>
                                         <p>If you have a promo code, Enter it here</p>
                                         <div className='cart-promocode-input'>
                                             <input type="text" placeholder='promo code' />
-                                            <button>Submit</button>
+                                            <button onClick={}>Submit</button>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     )

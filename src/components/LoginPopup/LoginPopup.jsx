@@ -43,6 +43,7 @@ const LoginPopup = ({ setShowLogin }) => {
                 notify("Sign Up Success", "success")
                 setShowLogin(false)
                 resetFields(inputChilds, currState)
+                document.body.classList.remove("hide")
             } catch (error) {
                 notify(error.message, "error")
                 console.log(error);
@@ -57,6 +58,7 @@ const LoginPopup = ({ setShowLogin }) => {
                     notify("Login Success", "success")
                     setShowLogin(false)
                     resetFields(inputChilds, currState)
+                    document.body.classList.remove("hide")
                 }
                 else {
                     notify("Password wrong try again!", "error")
@@ -73,7 +75,10 @@ const LoginPopup = ({ setShowLogin }) => {
             <form className="login-popup-container" onSubmit={registerUser}>
                 <div className="login-popup-title">
                     <h2>{currState}</h2>
-                    <img src={assets.cross_icon} alt="close" onClick={() => setShowLogin(false)} />
+                    <img src={assets.cross_icon} alt="close" onClick={() => {
+                        setShowLogin(false);
+                        document.body.classList.remove("hide")
+                    }} />
                 </div>
                 <div className="login-popup-inputs">
                     {currState === "Login" ? <></> : <input type="text" placeholder='Your name' required />}
@@ -91,7 +96,7 @@ const LoginPopup = ({ setShowLogin }) => {
                     </div>
                 </div>
                 <button>{currState === "Sign Up" ? "Create Account" : "Login"}</button>
-                
+
                 {
                     currState === "Login"
                         ?
@@ -99,7 +104,7 @@ const LoginPopup = ({ setShowLogin }) => {
                         :
                         <>
                             <div className="login-popup-condition">
-                                <input type="checkbox" required/>
+                                <input type="checkbox" required />
                                 <p>By continuing, I agree to the terms of use & privacy policy.</p>
                             </div>
                             <p>Already have an account? <span onClick={() => setCurrState("Login")}>Login here</span></p>

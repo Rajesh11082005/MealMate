@@ -17,7 +17,9 @@ export class Cart {
         } else {
             Cart.cartItems[userId][itemId]++;
         }
+        // console.log("before loading" , Cart.cartItems);
         Cart.saveCart();
+        // console.log("after loading" ,Cart.cartItems);
     }
 
     static removeFromCart(userId, itemId) {

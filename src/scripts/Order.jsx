@@ -64,6 +64,7 @@ export default class Order {
         const order = localStorage.getItem("orderList");
         if (order) {
             Order.orderList = JSON.parse(order);
+            return Order.orderList;
         }
     }
 

@@ -63,6 +63,7 @@ import emptycart from "./emptycart-illu.svg"
 import placeHolder from './placeholder.svg'
 import show from "./show.svg"
 import hide from "./hide.svg"
+import noOrders from "./noorders.svg"
 
 export const assets = {
     logo,
@@ -88,6 +89,7 @@ export const assets = {
     placeHolder,
     show,
     hide,
+    noOrders,
 }
 
 export const menu_list = [
